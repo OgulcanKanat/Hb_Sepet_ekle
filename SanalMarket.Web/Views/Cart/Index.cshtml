@@ -1,0 +1,32 @@
+﻿@model CartIndexViewModel
+@{
+    Layout = "_Layout";
+}
+
+<ul class="list-group">
+    <h4>Sepet</h4>
+    @foreach (var cart in Model.Carts)
+    {
+        <div class="row">
+            <div class="col-md-6">
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                    <div class="fw-bold">@cart.Product.Name</div>
+                    @cart.UnitTotalQuantity Adet
+                </div>
+                <span class="badge bg-primary rounded-pill">@cart.UnitTotalPrice</span>
+            </li>
+        </ol>
+            </div>
+                <div class="col-md-6">
+       <form asp-action="Remove" asp-controller="Cart">
+            <input type="hidden" name="productId" value="@cart.Product.Id">
+                    <button class="btn btn-sm btn-outline-primary">Sil</button>
+                    
+        </form>
+            </div>
+        </div>
+
+    }
+</ul>
